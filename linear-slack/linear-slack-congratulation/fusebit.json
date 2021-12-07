@@ -1,0 +1,25 @@
+{
+    "handler": "./integration",
+    "components": [
+      {
+        "name": "linearConnector",
+        "path": "/api/authorize",
+        "skip": false,
+        "entityId": "my-connector-243",
+        "provider": "@fusebit-int/linear-provider",
+        "dependsOn": [],
+        "entityType": "connector"
+      },
+      {
+        "name": "slack-e2e-linear",
+        "path": "/api/authorize",
+        "skip": false,
+        "entityId": "slack-e2e-linear",
+        "provider": "@fusebit-int/slack-provider",
+        "dependsOn": [],
+        "entityType": "connector"
+      }
+    ],
+    "componentTags": {},
+    "configuration": {}
+  }
