@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "deploy": "fuse integration deploy Linear-Jira-Sync -d .",
+    "get": "fuse integration get Linear-Jira-Sync -d ."
+  },
+  "dependencies": {
+    "@fusebit-int/atlassian-provider": "7.20.4",
+    "@fusebit-int/framework": "7.20.4",
+    "@fusebit-int/linear-provider": "*",
+    "md-to-adf": "^0.6.4",
+    "node-html-markdown": "^1.1.3"
+  },
+  "files": [
+    "./integration.js",
+    "README.md"
+  ],
+  "name": "workspace-integration-Linear-Jira-Sync",
+  "version": "7.20.4",
+  "private": "true"
+}
