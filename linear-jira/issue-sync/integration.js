@@ -29,7 +29,7 @@ integration.router.post('/api/:tenantId/webhooks', async (ctx) => {
   await atlassianWebhookClient.deleteAll(jiraCloud.id);
 
   // Define the webhooks you want to register (https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-webhooks/#api-rest-api-3-webhook-post)
-  const webhookDetails = [ { "jqlFilter":'project = "FD"', "events": [ "jira:issue_created", "jira:issue_updated" ] } ];
+  const webhookDetails = [{ jqlFilter: 'project = "FD"', events: ['jira:issue_created', 'jira:issue_updated'] }];
 
   // Use our Fusebit Webhook SDK to register webhooks, we will automatically configure the Webhook URL for you
   await atlassianWebhookClient.create(jiraCloud.id, webhookDetails);
@@ -41,30 +41,30 @@ integration.router.post('/api/:tenantId/webhooks', async (ctx) => {
 const Constants = {
   jiraToLinearFieldMap: {
     summary: 'title',
-    description: 'description'
+    description: 'description',
   },
   linearToJiraFieldMap: {
     title: 'summary',
-    description: 'description'
+    description: 'description',
   },
   Types: {
     Issues: {
       updated: 0,
-      created: 1
-    }
-  }
+      created: 1,
+    },
+  },
 };
 Constants.linearTypeMap = {
   'jira:issue_updated': Constants.Types.Issues.updated,
-  'jira:issue_created': Constants.Types.Issues.created
+  'jira:issue_created': Constants.Types.Issues.created,
 };
 Constants.jiraTypeMap = {
   'Issue.update': Constants.Types.Issues.updated,
-  'Issue.create': Constants.Types.Issues.created
-}
+  'Issue.create': Constants.Types.Issues.created,
+};
 
 const WebhookUtilities = {
-  getJiraClient: async function(ctx) {
+  getJiraClient: async function (ctx) {
     const atlassianClient = await integration.service.getSdk(ctx, jiraConnectorName, ctx.req.body.installIds[0]);
     const resources = await atlassianClient.getAccessibleResources('jira');
     if (resources.length === 0) {
@@ -82,23 +82,23 @@ const WebhookUtilities = {
     const data = {
       linearItem,
       jiraItem,
-      type
-    }
+      type,
+    };
     return await Promise.all([
-      integration.storage.setData(ctx, linearItem.id, {data}),
-      integration.storage.setData(ctx, jiraItem.id, {data}),
+      integration.storage.setData(ctx, linearItem.id, { data }),
+      integration.storage.setData(ctx, jiraItem.id, { data }),
     ]);
   },
   getAssociatedItems: async (ctx, id) => {
-    return await integration.storage.getData(ctx, id) || { data: {} };
+    return (await integration.storage.getData(ctx, id)) || { data: {} };
   },
 
-  normalizeJiraEvent: async function(ctx, type, jiraItem, event = false) {
+  normalizeJiraEvent: async function (ctx, type, jiraItem, event = false) {
     let itemData = jiraItem;
     const normalizedItem = {};
     if (event) {
       itemData = jiraItem.issue;
-      normalizedItem.changelog = jiraItem.changelog.items
+      normalizedItem.changelog = jiraItem.changelog.items;
     }
 
     switch (type) {
@@ -113,7 +113,7 @@ const WebhookUtilities = {
           summary: fetchedJiraItem.fields.summary,
           description: fetchedJiraItem.description,
           id: fetchedJiraItem.id,
-        })
+        });
         return normalizedItem;
       default:
         console.log('event type not recognized');
@@ -131,15 +131,15 @@ const WebhookUtilities = {
     Object.assign(normalizedItem, {
       title: itemData.title,
       description: itemData.description,
-      id: itemData.id
+      id: itemData.id,
     });
     return normalizedItem;
   },
 
   refreshLinearItem: async function (ctx, type, id) {
     const linearClient = await this.getLinearClient(ctx);
-    const rawLinearIssues = await linearClient.issues()
-    return rawLinearIssues.nodes.find(issue => {
+    const rawLinearIssues = await linearClient.issues();
+    return rawLinearIssues.nodes.find((issue) => {
       return issue.id === id;
     });
   },
@@ -148,7 +148,7 @@ const WebhookUtilities = {
     switch (type) {
       case Constants.Types.Issues.created:
       case Constants.Types.Issues.updated:
-        const fetchedJiraItem =  await jiraClient.get(`/issue/${id}?expand=renderedFields`);
+        const fetchedJiraItem = await jiraClient.get(`/issue/${id}?expand=renderedFields`);
         const renderedDescription = fetchedJiraItem.renderedFields.description;
         const markdownDescription = nhm.translate(renderedDescription);
         fetchedJiraItem.description = markdownDescription;
@@ -163,7 +163,7 @@ const WebhookUtilities = {
     }
   },
 
-  hasChanges: async function(ctx, newLinearItem, newJiraItem) {
+  hasChanges: async function (ctx, newLinearItem, newJiraItem) {
     // only update inside webhooks if there is a difference between the two issues.
     // this is necessary to prevent infinite update loops
     const { data } = await this.getAssociatedItems(ctx, newLinearItem.id);
@@ -172,7 +172,7 @@ const WebhookUtilities = {
       return true;
     }
     const titleUpdated = linearItem.title !== newLinearItem.title || jiraItem.summary !== newJiraItem.summary;
-    const linearDescriptionUpdated = linearItem.description !== newLinearItem.description
+    const linearDescriptionUpdated = linearItem.description !== newLinearItem.description;
     const jiraDescriptionUpdated = JSON.stringify(jiraItem.description) !== JSON.stringify(newJiraItem.description);
     return titleUpdated || linearDescriptionUpdated || jiraDescriptionUpdated;
   },
@@ -206,7 +206,7 @@ const WebhookUtilities = {
       case Constants.Types.Issues.created:
       case Constants.Types.Issues.updated:
         const updates = await this.createJiraChangeObject(linearItem);
-        jiraClient.put(`/issue/${jiraItem.id}`, { fields: updates })
+        jiraClient.put(`/issue/${jiraItem.id}`, { fields: updates });
         break;
       default:
         console.log('unknown update type');
@@ -248,7 +248,7 @@ const WebhookUtilities = {
         const jql = encodeURIComponent(`summary ~ "${linearItem.title}"`);
         const jiraIssueRaw = await jiraClient.get(`/search?jql=${jql}`);
         if (!jiraIssueRaw.issues || !jiraIssueRaw.issues.length) {
-          console.log('no matching issue found')
+          console.log('no matching issue found');
           return;
         }
         return await this.normalizeJiraEvent(ctx, type, jiraIssueRaw.issues[0], false);
@@ -262,8 +262,8 @@ const WebhookUtilities = {
       case Constants.Types.Issues.created:
       case Constants.Types.Issues.updated:
         const rawLinearIssues = await linearClient.issues();
-        const summaryChangelogEntry = jiraItem.changelog.find(change => change.field === 'summary');
-        return rawLinearIssues.nodes.find(issue => {
+        const summaryChangelogEntry = jiraItem.changelog.find((change) => change.field === 'summary');
+        return rawLinearIssues.nodes.find((issue) => {
           if (summaryChangelogEntry && !!summaryChangelogEntry.fromString) {
             return issue.title === summaryChangelogEntry.fromString;
           }
@@ -272,11 +272,11 @@ const WebhookUtilities = {
       default:
         return {};
     }
-  }
-}
+  },
+};
 
 integration.event.on(`/:connectorName/webhook/:eventType`, async (ctx, next) => {
-  console.log('event log: ', {...ctx.params});
+  console.log('event log: ', { ...ctx.params });
   next();
 });
 
@@ -304,9 +304,9 @@ const handleLinearIssue = (type) => async (ctx) => {
   } catch (e) {
     console.error(e);
   }
-}
+};
 integration.event.on(`/${linearConnectorName}/webhook/Issue.update`, handleLinearIssue(Constants.Types.Issues.updated));
-integration.event.on(`/${linearConnectorName}/webhook/Issue.create`, handleLinearIssue(Constants.Types.Issues.created))
+integration.event.on(`/${linearConnectorName}/webhook/Issue.create`, handleLinearIssue(Constants.Types.Issues.created));
 
 const handleJiraIssue = (type) => async (ctx) => {
   try {
@@ -329,13 +329,19 @@ const handleJiraIssue = (type) => async (ctx) => {
     // push updates to jira
     await WebhookUtilities.updateLinearItem(ctx, type, linearItem, jiraItem);
   } catch (e) {
-    console.log('jira webhook error: ', e)
+    console.log('jira webhook error: ', e);
   }
-}
-integration.event.on(`/${jiraConnectorName}/webhook/jira\\:issue_updated`, handleJiraIssue(Constants.Types.Issues.updated));
-integration.event.on(`/${jiraConnectorName}/webhook/jira\\:issue_created`, handleJiraIssue(Constants.Types.Issues.created));
+};
+integration.event.on(
+  `/${jiraConnectorName}/webhook/jira\\:issue_updated`,
+  handleJiraIssue(Constants.Types.Issues.updated)
+);
+integration.event.on(
+  `/${jiraConnectorName}/webhook/jira\\:issue_created`,
+  handleJiraIssue(Constants.Types.Issues.created)
+);
 
 integration.router.get('/api/testDeploy', async (ctx) => {
-  ctx.body = {updated: true}
-})
+  ctx.body = { updated: true };
+});
 module.exports = integration;
