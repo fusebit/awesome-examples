@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "deploy": "fuse integration deploy linear-growth -d .",
+    "get": "fuse integration get linear-growth -d ."
+  },
+  "dependencies": {
+    "@fusebit-int/framework": "7.22.0",
+    "@fusebit-int/linear-provider": "7.22.0",
+    "superagent": "*",
+    "sharp": "^0.29.3",
+    "vega": "^5.21.0"
+  },
+  "files": ["./integration.js", "./chunked.js", "./renderGraph.js", "README.md"],
+  "name": "@fusebit-int/catalog-feed-integration-linear-integration",
+  "version": "7.22.0",
+  "private": true
+}

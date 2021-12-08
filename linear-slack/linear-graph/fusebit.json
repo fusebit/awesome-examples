@@ -1,0 +1,22 @@
+{
+  "id": "linear-growth",
+  "tags": {
+    "fusebit.feedId": "linear",
+    "fusebit.service": "Linear",
+    "fusebit.feedType": "integration"
+  },
+  "handler": "./integration",
+  "components": [
+    {
+      "name": "linearConnector",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "linear-growth",
+      "provider": "@fusebit-int/linear-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    }
+  ],
+  "componentTags": {},
+  "configuration": {}
+}
