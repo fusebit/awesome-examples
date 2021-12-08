@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/fusebit/awesome_examples.git"
+    "url": "git+ssh://git@github.com/fusebit/awesome-examples.git"
   },
   "keywords": [
     "Fusebit",
@@ -18,7 +18,7 @@
   "author": "Fusebit",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/fusebit/awesome_examples/issues"
+    "url": "https://github.com/fusebit/awesome-examples/issues"
   },
   "homepage": "https://github.com/fusebit/awesome_examples#readme",
   "devDependencies": {
