@@ -1,0 +1,27 @@
+{
+  "name": "awesome-examples",
+  "version": "1.0.0",
+  "description": "Awesome Fusebit integration examples.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier:fix": "git ls-tree -r `git branch --show-current` --name-only | grep -E \"\\.[tj]?sx?$|\\.yaml$|\\.json$\" | grep -v assets | grep -v lerna.json | xargs -P 1 prettier --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fusebit/awesome-examples.git"
+  },
+  "keywords": [
+    "Fusebit",
+    "Integration"
+  ],
+  "author": "Fusebit",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/fusebit/awesome-examples/issues"
+  },
+  "homepage": "https://github.com/fusebit/awesome_examples#readme",
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  }
+}

@@ -10,7 +10,12 @@
     "sharp": "^0.29.3",
     "vega": "^5.21.0"
   },
-  "files": ["./integration.js", "./chunked.js", "./renderGraph.js", "README.md"],
+  "files": [
+    "./integration.js",
+    "./chunked.js",
+    "./renderGraph.js",
+    "README.md"
+  ],
   "name": "@fusebit-int/catalog-feed-integration-linear-integration",
   "version": "7.22.0",
   "private": true

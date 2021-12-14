@@ -1,26 +1,26 @@
 {
-  "id": "github-linear-commands",
+  "id": "Linear-Jira-Sync",
   "tags": {
-    "fusebit.feedId": "githubapp",
-    "fusebit.service": "GitHub",
+    "fusebit.feedId": "jira",
+    "fusebit.service": "Atlassian Jira",
     "fusebit.feedType": "integration"
   },
   "handler": "./integration",
   "components": [
     {
-      "name": "github",
+      "name": "Jira-Sync-Connector",
       "path": "/api/authorize",
       "skip": false,
-      "entityId": "github",
-      "provider": "@fusebit-int/githubapp-provider",
+      "entityId": "Jira-Sync-Connector",
+      "provider": "@fusebit-int/atlassian-provider",
       "dependsOn": [],
       "entityType": "connector"
     },
     {
-      "name": "linear",
+      "name": "Linear-Sync-Connector",
       "path": "/api/authorize",
       "skip": false,
-      "entityId": "linear",
+      "entityId": "Linear-Sync-Connector",
       "provider": "@fusebit-int/linear-provider",
       "dependsOn": [],
       "entityType": "connector"
