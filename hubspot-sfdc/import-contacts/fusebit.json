@@ -1,0 +1,25 @@
+{
+    "handler": "./integration",
+    "components": [
+      {
+        "name": "hubspotConnector",
+        "path": "/api/authorize",
+        "skip": false,
+        "entityId": "my-connector-242",
+        "provider": "@fusebit-int/hubspot-provider",
+        "dependsOn": [],
+        "entityType": "connector"
+      },
+      {
+        "name": "my-connector-734",
+        "path": "/api/authorize",
+        "skip": false,
+        "entityId": "my-connector-734",
+        "provider": "@fusebit-int/salesforce-provider",
+        "dependsOn": [],
+        "entityType": "connector"
+      }
+    ],
+    "componentTags": {},
+    "configuration": {}
+  }
