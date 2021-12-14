@@ -11,11 +11,11 @@
       "allow": [
         {
           "action": "integration:get",
-          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/integration/linear-growth/"
+          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/integration/"
         },
         {
-          "action": "log:get",
-          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/integration/linear-growth/log"
+          "action": "function:get-log",
+          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/boundary/integration/function/sampleIntegration/log"
         }
       ]
     }
