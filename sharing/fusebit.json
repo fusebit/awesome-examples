@@ -1,0 +1,23 @@
+{
+  "fuseVersion": "1.20.0",
+  "compute": {
+    "memorySize": 128,
+    "timeout": 30,
+    "staticIp": false
+  },
+  "security": {
+    "authentication": "none",
+    "functionPermissions": {
+      "allow": [
+        {
+          "action": "integration:get",
+          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/integration/linear-growth/"
+        },
+        {
+          "action": "log:get",
+          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/integration/linear-growth/log"
+        }
+      ]
+    }
+  }
+}

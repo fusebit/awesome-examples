@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "deploy": "fuse function deploy -b share share -d . -q y"
+  },
+  "dependencies": {}
+}
