@@ -1,0 +1,31 @@
+{
+  "id": "asana-discord-task-added-message",
+  "tags": {
+    "fusebit.feedId": "asana",
+    "fusebit.service": "Asana",
+    "fusebit.feedType": "integration"
+  },
+  "handler": "./integration",
+  "components": [
+    {
+      "name": "asanaConnector",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "asanaConnector",
+      "provider": "@fusebit-int/asana-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    },
+    {
+      "name": "discordConnector",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "discordConnector",
+      "provider": "@fusebit-int/discord-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    }
+  ],
+  "componentTags": {},
+  "configuration": {}
+}

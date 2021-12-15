@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "deploy": "fuse integration deploy asana-task-added-message -d .",
+    "get": "fuse integration get asana-task-added-message -d ."
+  },
+  "dependencies": {
+    "@fusebit-int/framework": "7.25.1",
+    "@fusebit-int/asana-provider": "7.25.1",
+    "@fusebit-int/discord-provider": "7.25.1",
+    "superagent": "^6.1.0"
+  },
+  "files": [
+    "./integration.js",
+    "README.md"
+  ],
+  "name": "@fusebit-int/catalog-feed-integration-asana-integration",
+  "version": "7.25.1",
+  "private": true
+}
