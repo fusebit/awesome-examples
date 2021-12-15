@@ -57,7 +57,7 @@ const renderStackOverflow = async (ctx, integrationId) => {
 
   const fmt = ctx.query.format !== undefined ? format[ctx.query.format] : format[1];
 
-  const result = [fmt.header, '```', `${entity.body.data.files['integration.js']}`, '```', fmt.footer]
+  const result = [fmt.header, '``` javascript', `${entity.body.data.files['integration.js']}`, '```', fmt.footer]
     .join('\n')
     .replace('{{ENTITY_URL}}', getEditUrl(ctx));
 
