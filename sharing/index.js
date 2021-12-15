@@ -1,9 +1,30 @@
+const superagent = require('superagent');
+
 const fusebitPortal = 'https://manage.fusebit.io/callback';
 
 module.exports = async (ctx) => {
+  if (ctx.path.toLowerCase() === '/') {
+    return {
+      body: Buffer.from('Select either /edit or /stackoverflow').toString('base64'),
+      bodyEncoding: 'base64',
+      headers: { 'Content-Type': 'text/plain' },
+    };
+  }
+  if (ctx.path.toLowerCase() === '/edit') {
+    return renderEdit(ctx);
+  }
+
+  if (ctx.path.toLowerCase() === '/stackoverflow') {
+    return renderStackOverflow(ctx);
+  }
+
+  return { status: 200, body: { message: 'Use /edit or /stackoverflow' } };
+};
+
+const renderEdit = (ctx) => {
   const url = new URL(fusebitPortal);
 
-  const interationPath = `/account/${ctx.params.accountId}/subscription/${ctx.params.subscriptionId}/integration/${ctx.query.integrationId}/edit`;
+  const integrationPath = `/account/${ctx.accountId}/subscription/${ctx.subscriptionId}/integration/${ctx.query.integrationId}/edit`;
 
   url.searchParams.set('silentAuth', false);
   url.searchParams.set('requestedPath', integrationPath);
@@ -12,5 +33,27 @@ module.exports = async (ctx) => {
   url.searchParams.set('token_type', 'Bearer');
   url.hash = `#access_token=${ctx.fusebit.functionAccessToken}`;
 
-  return { status: 302, headers: { location: url.toString() } };
+  return { status: 302, headers: { location: url.toString() }, body: { targetUrl: url.toString() } };
+};
+
+const renderStackOverflow = async (ctx, integrationId) => {
+  const url = `${ctx.fusebit.endpoint}/v2/account/${ctx.accountId}/subscription/${ctx.subscriptionId}/integration/${ctx.query.integrationId}`;
+  const entity = await superagent.get(url).set('Authorization', `Bearer ${ctx.fusebit.functionAccessToken}`);
+
+  const result = [
+    '| Example Implementation |',
+    '| ---- |',
+    '```',
+    `${entity.body.data.files['integration.js']}`,
+    '```',
+    '|<a href="https://fusebit.io"><kbd>View in Fusebit <img src="https://cdn.fusebit.io/assets/logo/logo-orange.png" width="15" height="15"></kbd></a> |',
+    '| ----: |',
+  ].join('\n');
+
+  return {
+    status: 200,
+    headers: { 'Content-Type': 'text/plain' },
+    bodyEncoding: 'base64',
+    body: Buffer.from(result).toString('base64'),
+  };
 };
