@@ -16,25 +16,25 @@ If an integration is created to solve a problem on Stack Overflow, [loading](htt
 `/stackoverflow?integrationId=sampleIntegration&format=0` (or `format=1`) will return a sample Stack Overflow
 markdown blob, suitable for pasting into an answer.
 
+````
+| Example Implementation |
+| ---- |
 ```
-	| Example Implementation |
-	| ---- |
-	```
-	const { Integration } = require("@fusebit-int/framework");
+const { Integration } = require("@fusebit-int/framework");
 
-	const integration = new Integration();
-	const router = integration.router;
+const integration = new Integration();
+const router = integration.router;
 
-	router.post("/api/tenant/:tenantId/test", async (ctx) => {
-		ctx.body = `Hello World: ${ctx.params.tenantId}`;
-	});
+router.post("/api/tenant/:tenantId/test", async (ctx) => {
+  ctx.body = `Hello World: ${ctx.params.tenantId}`;
+});
 
-	module.exports = integration;
+module.exports = integration;
 
-	```
-	|<a href="https://fusebit.io"><kbd>View in Fusebit <img src="https://cdn.fusebit.io/assets/logo/logo-orange.png" width="15" height="15"></kbd></a> |
-	| ----: |
 ```
+|<a href="https://fusebit.io"><kbd>View in Fusebit <img src="https://cdn.fusebit.io/assets/logo/logo-orange.png" width="15" height="15"></kbd></a> |
+| ----: |
+````
 
 # Deployment
 
