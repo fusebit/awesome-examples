@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "deploy": "fuse function deploy -b share share -d . -q y"
+  },
+  "dependencies": {
+    "superagent": "^6.1.0"
+  }
+}
