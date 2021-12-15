@@ -15,7 +15,7 @@
         },
         {
           "action": "function:get-log",
-          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/boundary/integration/function/sampleIntegration/log"
+          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/boundary/integration/"
         }
       ]
     }
