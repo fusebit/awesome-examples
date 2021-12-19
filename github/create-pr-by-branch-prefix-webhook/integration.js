@@ -39,8 +39,8 @@ integration.event.on(`/${connectorName}/webhook/branch.created`, async (ctx) => 
       title: `Fusebit Generated PR from ${branchName}`,
       head: branchName,
       base: targetBranch,
-      owner
-      repo
+      owner,
+      repo,
     });
   }
 });
