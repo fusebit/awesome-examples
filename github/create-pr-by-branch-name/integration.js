@@ -43,7 +43,7 @@ router.post('/api/tenant/:tenantId/pr/batch', async (ctx) => {
   const prefixedBranches = branches.filter(branch => branch.name.startsWith(branchPrefix));
   console.log(`${prefixedBranches.length} branches match the filter`)
 
-  console.log('creating pull requests...');
+  console.log('Creating pull requests...');
   const result = await Promise.allSettled(
       prefixedBranches.map(branch => {
         return userClient.rest.pulls.create({
