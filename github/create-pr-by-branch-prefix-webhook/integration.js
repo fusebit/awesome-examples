@@ -19,15 +19,14 @@ const integration = new Integration();
 const router = integration.router;
 const connectorName = 'githubappConnector';
 
-// TODO: Replace the below value with the owner id and repos id of the desired repos
-const ownerId = 'REPLACE WITH OWNER NAME';
-const reposId = 'REPLACE WITH REPOSITORY NAME';
 const branchPrefix = 'client-';
 const targetBranch = 'main';
 
 integration.event.on(`/${connectorName}/webhook/branch.created`, async (ctx) => {
   const { data: event } = ctx.req.body.data;
   const branchRef = event.ref;
+  const owner = event.respository.owner.login;
+  const repo = event.repository.name;
 
   // Branch refs are of format `refs/heads/{branchName}`
   const branchName = branchRef.split('/').slice(2).join('/');
@@ -40,8 +39,8 @@ integration.event.on(`/${connectorName}/webhook/branch.created`, async (ctx) => 
       title: `Fusebit Generated PR from ${branchName}`,
       head: branchName,
       base: targetBranch,
-      owner: ownerId,
-      repo: reposId,
+      owner
+      repo
     });
   }
 });
