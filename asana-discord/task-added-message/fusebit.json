@@ -1,27 +1,27 @@
 {
-  "id": "Linear-Jira-Sync",
+  "id": "asana-discord-task-added-message",
   "tags": {
-    "fusebit.feedId": "jira",
-    "fusebit.service": "Atlassian Jira",
+    "fusebit.feedId": "asana",
+    "fusebit.service": "Asana",
     "fusebit.feedType": "integration"
   },
   "handler": "./integration",
   "components": [
     {
-      "name": "Jira-Sync-Connector",
+      "name": "asanaConnector",
       "path": "/api/authorize",
       "skip": false,
-      "entityId": "Jira-Sync-Connector",
-      "provider": "@fusebit-int/atlassian-provider",
+      "entityId": "asanaConnector",
+      "provider": "@fusebit-int/asana-provider",
       "dependsOn": [],
       "entityType": "connector"
     },
     {
-      "name": "Linear-Sync-Connector",
+      "name": "discordConnector",
       "path": "/api/authorize",
       "skip": false,
-      "entityId": "Linear-Sync-Connector",
-      "provider": "@fusebit-int/linear-provider",
+      "entityId": "discordConnector",
+      "provider": "@fusebit-int/discord-provider",
       "dependsOn": [],
       "entityType": "connector"
     }
