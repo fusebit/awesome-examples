@@ -67,7 +67,7 @@ integration.event.on(`/${connectorName}/webhook/branch.created`, async (ctx) => 
   const branchRef = event.ref;
 
   // Branch refs are of format `refs/heads/{branchName}`
-  const branchName = branchRef.split('/')[2];
+  const branchName = branchRef.split('/').slice(2).join('/');
 
   if (branchName.startsWith(branchPrefix)) {
     const githubClient = await integration.service.getSdk(ctx, connectorName, ctx.req.body.installIds[0]);
