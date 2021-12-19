@@ -26,8 +26,7 @@ const branchPrefix = 'client-';
 const targetBranch = 'main';
 
 integration.event.on(`/${connectorName}/webhook/branch.created`, async (ctx) => {
-
-  const {data: event} = ctx.req.body.data;
+  const { data: event } = ctx.req.body.data;
   const branchRef = event.ref;
 
   // Branch refs are of format `refs/heads/{branchName}`
@@ -42,9 +41,8 @@ integration.event.on(`/${connectorName}/webhook/branch.created`, async (ctx) => 
       head: branchName,
       base: targetBranch,
       owner: ownerId,
-      repo: reposId
+      repo: reposId,
     });
-
   }
 });
 

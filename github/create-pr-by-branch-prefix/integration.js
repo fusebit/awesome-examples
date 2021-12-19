@@ -26,62 +26,34 @@ const branchPrefix = 'client-';
 const targetBranch = 'main';
 
 router.post('/api/tenant/:tenantId/pr/batch', async (ctx) => {
-
   const githubClient = await integration.tenant.getSdkByTenant(ctx, connectorName, ctx.params.tenantId);
   const userClient = githubClient.user();
 
-  console.log('fetching branches...');
-  const branches = await userClient.paginate(
-      userClient.rest.repos.listBranches,
-      {
-        owner: ownerId,
-        repo: reposId
-      }
-  );
+  console.log('Fetching branches...');
+  const branches = await userClient.paginate(userClient.rest.repos.listBranches, {
+    owner: ownerId,
+    repo: reposId,
+  });
 
   console.log(`Filtering ${branches.length} retrieved branches`);
-  const prefixedBranches = branches.filter(branch => branch.name.startsWith(branchPrefix));
-  console.log(`${prefixedBranches.length} branches match the filter`)
+  const prefixedBranches = branches.filter((branch) => branch.name.startsWith(branchPrefix));
+  console.log(`${prefixedBranches.length} branches match the filter`);
 
   console.log('Creating pull requests...');
   const result = await Promise.allSettled(
-      prefixedBranches.map(branch => {
-        return userClient.rest.pulls.create({
-          title: `Fusebit Generated PR from ${branch.name}`,
-          head: branch.name,
-          base: targetBranch,
-          owner: ownerId,
-          repo: reposId
-        });
-      })
+    prefixedBranches.map((branch) => {
+      return userClient.rest.pulls.create({
+        title: `Fusebit Generated PR from ${branch.name}`,
+        head: branch.name,
+        base: targetBranch,
+        owner: ownerId,
+        repo: reposId,
+      });
+    })
   );
 
-  console.log('done!');
+  console.log('Done!');
   ctx.body = result;
-
-});
-
-integration.event.on(`/${connectorName}/webhook/branch.created`, async (ctx) => {
-
-  const {data: event} = ctx.req.body.data;
-  const branchRef = event.ref;
-
-  // Branch refs are of format `refs/heads/{branchName}`
-  const branchName = branchRef.split('/').slice(2).join('/');
-
-  if (branchName.startsWith(branchPrefix)) {
-    const githubClient = await integration.service.getSdk(ctx, connectorName, ctx.req.body.installIds[0]);
-    const userClient = githubClient.user();
-
-    await userClient.rest.pulls.create({
-      title: `Fusebit Generated PR from ${branchName}`,
-      head: branchName,
-      base: targetBranch,
-      owner: ownerId,
-      repo: reposId
-    });
-
-  }
 });
 
 module.exports = integration;
