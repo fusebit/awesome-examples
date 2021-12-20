@@ -15,17 +15,19 @@ router.post('/api/tenant/:tenantId/webhooks', integration.middleware.authorizeUs
   const projects = await asanaClient.projects.getProjects({ workspace });
   // Pick resource to receive events for
   const projectName = 'Demo Project';
-  const selectedProject = projects.data.filter(d => d.name === projectName);
+  const selectedProject = projects.data.filter((d) => d.name === projectName);
 
   if (selectedProject.length) {
-      const asanaWebhookClient = await integration.webhook.getSdkByTenant(ctx, asanaConnectorName, ctx.params.tenantId);
-      const webhook = await asanaWebhookClient.create(selectedProject[0].gid, {
-        "filters": [{
-          "action": "added",
-          "resource_type": "task"
-        }]
-      });
-      ctx.body = webhook;
+    const asanaWebhookClient = await integration.webhook.getSdkByTenant(ctx, asanaConnectorName, ctx.params.tenantId);
+    const webhook = await asanaWebhookClient.create(selectedProject[0].gid, {
+      filters: [
+        {
+          action: 'added',
+          resource_type: 'task',
+        },
+      ],
+    });
+    ctx.body = webhook;
   }
 });
 
@@ -36,7 +38,11 @@ integration.event.on('/asanaConnector/webhook/added', async (ctx) => {
   if (!discordClient.fusebit.credentials.webhook) {
     return;
   }
-  const { user, parent, resource: { resource_type, gid } } = ctx.req.body.data;
+  const {
+    user,
+    parent,
+    resource: { resource_type, gid },
+  } = ctx.req.body.data;
   // Ensure this event is for a task created from a project
   if (resource_type !== 'task' && parent.resource_type !== 'project') {
     return;
@@ -65,11 +71,11 @@ integration.event.on('/asanaConnector/webhook/added', async (ctx) => {
         fields: [
           {
             name: 'Created by',
-            value: taskCreatedByUser.name
-          }
-        ]
-      }
-    ]
+            value: taskCreatedByUser.name,
+          },
+        ],
+      },
+    ],
   });
 });
 
