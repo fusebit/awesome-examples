@@ -1,0 +1,29 @@
+{
+  "id": "Cron-Issue",
+  "tags": {
+    "fusebit.feedId": "linear",
+    "fusebit.service": "Linear",
+    "fusebit.feedType": "integration"
+  },
+  "handler": "./integration",
+  "schedule": [
+    {
+      "cron": "* * * * * SUN",
+      "endpoint": "/create_linear_issue",
+      "timezone": "America/Los_Angeles"
+    }
+  ],
+  "components": [
+    {
+      "name": "linearConnector",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "Linear-Cron-Connector",
+      "provider": "@fusebit-int/linear-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    }
+  ],
+  "componentTags": {},
+  "configuration": {}
+}

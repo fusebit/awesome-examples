@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "deploy": "fuse integration deploy Cron-Issue -d .",
+    "get": "fuse integration get Cron-Issue -d ."
+  },
+  "dependencies": {
+    "@fusebit-int/framework": "7.29.3",
+    "@fusebit-int/linear-provider": "7.29.3"
+  },
+  "files": [
+    "./integration.js",
+    "README.md"
+  ],
+  "name": "@fusebit-int/catalog-feed-integration-linear-integration",
+  "version": "7.29.3",
+  "private": true
+}
