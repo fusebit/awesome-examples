@@ -1,0 +1,16 @@
+{
+  "handler": "./integration",
+  "components": [
+    {
+      "name": "githubappConnector",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "Github---create-pr-by-branch-prefix",
+      "provider": "@fusebit-int/githubapp-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    }
+  ],
+  "componentTags": {},
+  "configuration": {}
+}

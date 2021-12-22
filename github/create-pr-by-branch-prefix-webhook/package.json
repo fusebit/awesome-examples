@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "deploy": "fuse integration deploy Github-Create-PRs -d .",
+    "get": "fuse integration get Github-Create-PRs -d ."
+  },
+  "dependencies": {
+    "@fusebit-int/framework": "7.29.3",
+    "@fusebit-int/githubapp-provider": "7.29.3",
+    "superagent": "6.1.0"
+  },
+  "files": [
+    "./integration.js",
+    "README.md"
+  ],
+  "name": "@fusebit-int/catalog-feed-integration-githubapp-integration",
+  "version": "7.29.3",
+  "private": true
+}
