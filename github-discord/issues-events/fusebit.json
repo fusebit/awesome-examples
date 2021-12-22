@@ -1,0 +1,31 @@
+{
+  "id": "github-linear-commands",
+  "tags": {
+    "fusebit.feedId": "githubapp",
+    "fusebit.service": "GitHub",
+    "fusebit.feedType": "integration"
+  },
+  "handler": "./integration",
+  "components": [
+    {
+      "name": "github",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "github",
+      "provider": "@fusebit-int/githubapp-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    },
+    {
+      "name": "linear",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "linear",
+      "provider": "@fusebit-int/linear-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    }
+  ],
+  "componentTags": {},
+  "configuration": {}
+}
