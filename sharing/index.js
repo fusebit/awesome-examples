@@ -42,7 +42,7 @@ const format = [
   {
     header: '| Example Implementation |\n| ---- |',
     footer:
-      '|<a href="https://fusebit.io"><kbd>View in Fusebit <img src="https://cdn.fusebit.io/assets/logo/logo-orange.png" width="15" height="15"></kbd></a> |\n| ----: |',
+      '|<a href="{{ENTITY_URL}}"><kbd>View in Fusebit <img src="https://cdn.fusebit.io/assets/logo/logo-orange.png" width="15" height="15"></kbd></a> |\n| ----: |',
   },
   {
     header:

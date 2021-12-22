@@ -2,7 +2,6 @@ Thanks for trying out Fusebit and downloading your GitHub App Integration code.
 
 Use your favorite tools to make any changes to the code in this folder.
 
-
 # Editing Integration code
 
 1. Ensure you have a recent version of [Node.js](https://nodejs.org) on your system and then run
@@ -25,7 +24,6 @@ Use your favorite tools to make any changes to the code in this folder.
 
 `fuse integration deploy Github-Create-PRs -d Github-Create-PRs`
 
-
 # Running your Integration
 
 To run the Integration and test as you make changes, follow these steps:
@@ -38,11 +36,9 @@ To run the Integration and test as you make changes, follow these steps:
 
 3. Note the `curl` command and JavaScript example displayed by the test application in the previous step and use that to invoke the integration. If your token expires, you can always obtain a new one by opening up the test application again with `fuse integration test Github-Create-PRs`, or by generating a new access token directly with `fuse token -o raw`.
 
-
 # Debugging your Integration
 
 After you make a code change and run the Integration, you can inspect `console`
 output and any errors by running:
 
 `fuse integration log Github-Create-PRs`
-
