@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "deploy": "fuse integration deploy Cron-Issue -d .",
-    "get": "fuse integration get Cron-Issue -d ."
+    "deploy": "fuse integration deploy cron-issue -d .",
+    "get": "fuse integration get cron-issue -d ."
   },
   "dependencies": {
     "@fusebit-int/framework": "7.29.3",

@@ -16,29 +16,29 @@ Use your favorite tools to make any changes to the code in this folder.
 
 3. You can now download the code for an integration.
 
-`fuse integration get Cron-Issue -d Cron-Issue`
+`fuse integration get cron-issue -d cron-issue`
 
 4. You can now explore the code in the given directory and make any changes with your favorite editor or IDE. At present, the code cannot be executed locally, so running `npm install` is not necessary.
 
 5. After making local changes to the code, you can push the updates to Fusebit's cloud by running
 
-`fuse integration deploy Cron-Issue -d Cron-Issue`
+`fuse integration deploy cron-issue -d cron-issue`
 
 # Running your Integration
 
 To run the Integration and test as you make changes, follow these steps:
 
-1. (Development-time only) The integration needs to know the Identity of the user on whose behalf to execute. In production, this will be handled by your application, but for test purposes, you can log in as yourself manually.Open the test application for the 'Cron-Issue' integration in the browser with:
+1. (Development-time only) The integration needs to know the Identity of the user on whose behalf to execute. In production, this will be handled by your application, but for test purposes, you can log in as yourself manually.Open the test application for the 'cron-issue' integration in the browser with:
 
-`fuse integration test Cron-Issue`
+`fuse integration test cron-issue`
 
 2. You will be asked to log in, and the integration will act on your behalf going forward.
 
-3. Note the `curl` command and JavaScript example displayed by the test application in the previous step and use that to invoke the integration. If your token expires, you can always obtain a new one by opening up the test application again with `fuse integration test Cron-Issue`, or by generating a new access token directly with `fuse token -o raw`.
+3. Note the `curl` command and JavaScript example displayed by the test application in the previous step and use that to invoke the integration. If your token expires, you can always obtain a new one by opening up the test application again with `fuse integration test cron-issue`, or by generating a new access token directly with `fuse token -o raw`.
 
 # Debugging your Integration
 
 After you make a code change and run the Integration, you can inspect `console`
 output and any errors by running:
 
-`fuse integration log Cron-Issue`
+`fuse integration log cron-issue`

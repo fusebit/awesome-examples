@@ -8,7 +8,7 @@ This utility function allows, with a single url, a user to share an integration 
 run support, with the public through a single link.
 
 If the browser is sent to this
-[url](https://api.us-west-1.on.fusebit.io/v1/run/sub-025ba376ff9d4ec5/share/share/edit?integrationId=sampleIntegration): `/edit?integrationId=sampleIntegration`, the browser is redirected to a view of the Fusebit Editor which allows them to observe and press the Run button for the integration.  This works for any integration that's published to the same account that this function is published to.
+[url](https://api.us-west-1.on.fusebit.io/v1/run/sub-025ba376ff9d4ec5/share/share/edit?integrationId=sampleIntegration): `/edit?integrationId=sampleIntegration`, the browser is redirected to a view of the Fusebit Editor which allows them to observe and press the Run button for the integration. This works for any integration that's published to the same account that this function is published to.
 
 ### Pre-made Sharing
 

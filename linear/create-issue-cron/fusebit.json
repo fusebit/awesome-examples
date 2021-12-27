@@ -1,5 +1,5 @@
 {
-  "id": "Cron-Issue",
+  "id": "cron-issue",
   "tags": {
     "fusebit.feedId": "linear",
     "fusebit.service": "Linear",
@@ -18,7 +18,7 @@
       "name": "linearConnector",
       "path": "/api/authorize",
       "skip": false,
-      "entityId": "Linear-Cron-Connector",
+      "entityId": "linear-cron-connector",
       "provider": "@fusebit-int/linear-provider",
       "dependsOn": [],
       "entityType": "connector"

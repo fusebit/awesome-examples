@@ -13,13 +13,11 @@ router.post('/api/tenant/:tenantId/sync', integration.middleware.authorizeUser('
   const contacts = await hubspotClient.crm.contacts.getAll();
   await Promise.all(
     contacts.map(async (contact) => {
-      const res = await sfdcClient
-        .sobject('Contact')
-        .create({
-          LastName: contact.properties.lastname,
-          Email: contact.properties.email,
-          FirstName: contact.properties.firstname,
-        });
+      const res = await sfdcClient.sobject('Contact').create({
+        LastName: contact.properties.lastname,
+        Email: contact.properties.email,
+        FirstName: contact.properties.firstname,
+      });
     })
   );
   ctx.body = `Successfully performed initial import from hubSpot to SFDC.`;
@@ -29,13 +27,11 @@ integration.event.on('/:componentName/webhook/:eventtype', async (ctx) => {
   const hubspotClient = await integration.service.getSdk(ctx, hubspotConnector, ctx.req.body.installIds[0]);
   const sfdcClient = await integration.service.getSdk(ctx, sfdcConnector, ctx.req.body.installIds[0]);
   const contact = await hubspotClient.crm.contacts.basicApi.getById(ctx.req.body.data.objectId);
-  await sfdcClient
-    .sobject('Contact')
-    .create({
-      LastName: contact.properties.lastname,
-      Email: contact.properties.email,
-      FirstName: contact.properties.firstname,
-    });
+  await sfdcClient.sobject('Contact').create({
+    LastName: contact.properties.lastname,
+    Email: contact.properties.email,
+    FirstName: contact.properties.firstname,
+  });
 });
 
 module.exports = integration;

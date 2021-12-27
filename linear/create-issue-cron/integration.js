@@ -49,7 +49,7 @@ router.delete('/api/cron/tenant/:tenantId', async (ctx) => {
   const storageItem = await integration.storage.getData(ctx, cronStorageKey);
   const data = storageItem ? storageItem.data : {};
   delete data[ctx.params.tenantId];
-  await integration.storage.setData(ctx, cronStorageKey, { data });
+  await integration.storage.setData(ctx, cronStorageKey, { data, version: storageItem.version });
   ctx.body = data;
 });
 
