@@ -1,0 +1,22 @@
+{
+  "id": "stackoverflow-rss",
+  "tags": {
+    "fusebit.feedId": "stackoverflow",
+    "fusebit.service": "stackoverflow",
+    "fusebit.feedType": "integration"
+  },
+  "handler": "./integration",
+  "components": [
+    {
+      "name": "stackoverflowConnector",
+      "path": "/api/authorize",
+      "skip": false,
+      "entityId": "stackoverflow-rss",
+      "provider": "@fusebit-int/stackoverflow-provider",
+      "dependsOn": [],
+      "entityType": "connector"
+    }
+  ],
+  "componentTags": {},
+  "configuration": {}
+}

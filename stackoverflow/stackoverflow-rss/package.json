@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "deploy": "fuse integration deploy stackoverflow-rss -d .",
+    "get": "fuse integration get stackoverflow-rss -d ."
+  },
+  "dependencies": {
+    "@fusebit-int/framework": "7.33.2",
+    "@fusebit-int/stackoverflow-provider": "7.33.2"
+  },
+  "files": ["./integration.js", "README.md"],
+  "version": "7.33.2",
+  "private": true
+}
