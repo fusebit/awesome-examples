@@ -21,7 +21,7 @@ module.exports = async (ctx) => {
   return { status: 200, body: { message: 'Use /edit or /stackoverflow' } };
 };
 
-const getEditUrl = (ctx) => `${ctx.baseUrl}/edit?integrationId=${ctx.query.integrationId}`;
+const getEditUrl = (ctx) => `${ctx.baseUrl}/edit?integrationId=${ctx.query.integrationId}&tenantId=${ctx.query.tenantId}`;
 
 const renderEdit = (ctx) => {
   const url = new URL(fusebitPortal);
