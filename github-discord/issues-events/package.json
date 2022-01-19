@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "deploy": "fuse integration deploy github-discord-issues-events -d .",
+    "get": "fuse integration get github-discord-issues-events -d ."
+  },
+  "dependencies": {
+    "@fusebit-int/framework": "7.29.3",
+    "@fusebit-int/githubapp-provider": "7.29.3",
+    "@fusebit-int/discord-provider": "7.29.3",
+    "superagent": "^6.1.0"
+  },
+  "files": [
+    "./integration.js",
+    "README.md"
+  ],
+  "name": "@fusebit-int/catalog-feed-integration-githubapp-integration",
+  "version": "7.29.3",
+  "private": true
+}
