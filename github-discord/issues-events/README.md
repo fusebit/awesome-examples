@@ -6,17 +6,15 @@ This is a Discord integration that writes in a specific channel when the followi
 - An Issue / Pull request is closed / reopened / merged
 - A new commit(s) is pushed
 
-# Setup
+### Dependencies:
 
-Dependencies:
+1. GitHub App Connector with webhook configured
+2. Discord with default configuration
 
-1. githubappConnector with webhook configured
-2. discord with default configuration
+### Setup
 
-Setup:
-
-1. Create a new Integration with GitHub App connector.
-2. Create a new Discord Connector and attach it to the created Integration.
+1. Create a new Integration with GitHub App connector. [Read documentation](https://developer.fusebit.io/docs/githubapp)
+2. Create a new Discord Connector and attach it to the created Integration. [Read documentation](https://developer.fusebit.io/docs/discord)
 3. Copy paste ./integration.js to the integration.
 4. Configure a GitHub App Connector with production credentials enabled.
 5. Set Issues permissions to read on the GitHub Application
