@@ -253,7 +253,7 @@ const createIntegrationFeedEntry = async (ctx) => {
 
   return {
     status: 200,
-    headers: { 'Content-Type': 'text/plain' },
+    headers: { 'Content-Type': 'application/json' },
     body
   };
 }
