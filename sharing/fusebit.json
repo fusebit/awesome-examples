@@ -14,6 +14,10 @@
           "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/integration/"
         },
         {
+          "action": "connector:get",
+          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/connector/"
+        },
+        {
           "action": "function:get-log",
           "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/boundary/integration/"
         }
