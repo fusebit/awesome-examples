@@ -2,7 +2,7 @@ const superagent = require('superagent');
 
 const fusebitPortal = 'https://manage.fusebit.io/callback';
 
-const integrationsFeedUrl = 'http://manage.fusebit.io/feed/connectorsFeed.json';
+const integrationsFeedUrl = 'http://manage.fusebit.io/feed/integrationsFeed.json';
 
 module.exports = async (ctx) => {
   switch (ctx.path.toLowerCase()) {
