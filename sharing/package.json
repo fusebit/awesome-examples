@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "deploy": "fuse function deploy -b share share -d . -q y"
+    "deploy": "fuse function deploy -b share share -d . -q y",
+    "serve": "fuse function serve -b share share -d ."
   },
   "dependencies": {
     "superagent": "^6.1.0"

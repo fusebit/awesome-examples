@@ -1,5 +1,5 @@
 {
-  "fuseVersion": "1.20.0",
+  "fuseVersion": "1.15.2",
   "compute": {
     "memorySize": 128,
     "timeout": 30,
@@ -12,6 +12,10 @@
         {
           "action": "integration:get",
           "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/integration/"
+        },
+        {
+          "action": "connector:get",
+          "resource": "/account/{{accountId}}/subscription/{{subscriptionId}}/connector/"
         },
         {
           "action": "function:get-log",
