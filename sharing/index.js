@@ -106,15 +106,15 @@ const createIntegrationFeedEntry = async (ctx) => {
   const cons = await Promise.all(
     int.data.components
       .filter((component) => component.entityType === 'connector')
-      .map(async (connector) => getConnectorEntity(ctx, connector.name))
+      .map(async (connector) => getConnectorEntity(ctx, connector.entityId))
   );
 
   const firstConnectorHandler = cons?.[0].data.handler;
   const integrationsFeed = await getIntegrationsFeed(ctx);
   const firstFeedMatch =
     integrationsFeed.find((feed) => {
-      return Object.values(feed.configuration.entities).some((entity) => entity.data.handler === firstConnectorHandler);
-    }) || integrationsFeed.find((feed) => !Object.values(feed.configuration.entities).length);
+      return Object.values(feed.configuration.entities || {}).some((entity) => entity.data.handler === firstConnectorHandler);
+    }) || integrationsFeed.find((feed) => !Object.values(feed.configuration.entities || {}).length);
 
   const integrationId = `${int.id}-forked-${Math.floor(Math.random() * 100)}`;
 
@@ -234,8 +234,8 @@ const createIntegrationFeedEntry = async (ctx) => {
               files: int.data.files,
               handler: int.data.handler,
               components: int.data.components.map((com) => {
-                if (cons.some((con) => con.id === com.name)) {
-                  com.entityId = `<% global.entities.${com.name}.id %>`;
+                if (cons.some((con) => con.id === com.entityId)) {
+                  com.entityId = `<% global.entities.${com.entityId}.id %>`;
                 }
                 return com;
               }),
