@@ -1,5 +1,5 @@
 {
-  "fuseVersion": "1.20.0",
+  "fuseVersion": "1.15.2",
   "compute": {
     "memorySize": 128,
     "timeout": 30,
