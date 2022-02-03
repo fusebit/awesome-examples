@@ -28,6 +28,8 @@ Example configuration, within the Integration's `fusebit.json` file:
 }
 ```
 
+You can copy a configuration object to your clipboard that represents the current request settings by holding shift and clicking the Gear button next to the "Run" button.
+
 ### Pre-made Sharing
 
 If an integration is created to solve a problem on Stack Overflow, [loading](https://api.us-west-1.on.fusebit.io/v1/run/sub-c2eaf0578e7140ca/share/share/stackoverflow?integrationId=so-70392539&format=0):
