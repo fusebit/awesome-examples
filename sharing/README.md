@@ -21,11 +21,11 @@ Example configuration, within the Integration's `fusebit.json` file:
 ```
 {
   . . .
-  configuration: {},
-  fusebitEditor: [ {
-    method: 'POST',
-    url: '/api/tenant/user-1',
-    payload: {}
+  "configuration": {},
+  "fusebitEditor": [ {
+    "method": "POST",
+    "url": "/api/tenant/user-1",
+    "payload": {}
   } ]
 }
 ```
