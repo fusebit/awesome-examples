@@ -28,7 +28,7 @@ const getIntegrationPath = (ctx) => `${getApiPath(ctx)}/integration/${ctx.query.
 const getConnectorPath = (ctx, connectorId) => `${getApiPath(ctx)}/connector/${connectorId}`;
 
 const getForkQueryString = (ctx) =>
-  `forkEditFeedUrl=${ctx.baseUrl}/integrationsFeed.json?integrationId=${ctx.query.integrationId}`;
+  `forkEditFeedUrl=${ctx.baseUrl}/integrationsFeed.json?integrationId=${ctx.query.integrationId}&trackAnonymous=true`;
 
 const getEditUrl = (ctx) => `${ctx.baseUrl}/edit?integrationId=${ctx.query.integrationId}`;
 
